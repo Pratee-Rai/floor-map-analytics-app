@@ -85,6 +85,11 @@ h1{
     width:fit-content;
 }
 
+.heatmap-content{
+    display: flex;
+    align-items: flex-end;
+}
+
 .heatmap-img{
     position: relative;
     margin-left: 100px;
@@ -107,8 +112,15 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 .heatmap-img button > img{
     margin-left: 10px;
+}
+
+.area-path-image{
+    position: absolute;
+    top: -45px;
+    right: -50px;
 }

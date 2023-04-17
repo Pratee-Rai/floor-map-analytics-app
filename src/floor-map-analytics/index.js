@@ -37,14 +37,14 @@ export default function FloorMapAnalytics() {
           <div className="filters">
             <p>Filter By:</p>
             <select
-              name="frequency"
+              name="location"
               value={location}
               onChange={handlefiltersValueChange}
             >
               {getOptions(locationOptions)}
             </select>
             <select
-              name="time"
+              name="area"
               value={area}
               onChange={handlefiltersValueChange}
             >
