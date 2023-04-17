@@ -1,0 +1,114 @@
+h1{
+    text-align: left;
+    margin-top: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+.fma-content *{
+    margin: 0;
+    padding: 0;
+}
+
+.fma-content{
+    background-color: #fff;
+    height: 703px;
+    border-radius: 12px;
+}
+
+.fma-content-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 54px;
+    border-bottom:2px solid #D8DBE5;
+}
+
+.fma-content-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 18px;
+}
+
+.filters{
+    display: flex;
+    height: 32px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.filters p{
+    padding: 5px 0;
+}
+
+.filters select{
+    width: 160px;
+}
+
+.filters input{
+    width: 134px;
+}
+
+.filters select, .filters input{
+    border-radius: 5px;
+    border: 0.5px solid #4c4c4c;
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+.fma-content-start{
+    display: flex;
+}
+
+.heatmap{
+    width: 760px;
+    height: 633px;
+    border-right:2px solid #D8DBE5 ;
+    padding: 15px 0 0 10px;
+}
+
+.occupancy-rate{
+    padding: 15px 0 0 10px;
+}
+
+.heatmap-title, .occupancy-rate-title{
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 500;
+}
+
+.heatmap-header p, .occupancy-rate-header p{
+    font-size: 14px;
+    line-height: 17px;
+    color: #868E96;
+    width:fit-content;
+}
+
+.heatmap-img{
+    position: relative;
+    margin-left: 100px;
+    margin-top: 50px ;
+    display: inline-block;
+}
+
+.heatmap-img button{
+    background-color: #FF2E00;
+    color: #fff;
+    border-radius: 10px;
+    width: 135px;
+    height: 40px;
+    font-size: 14px;
+    padding: 5px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heatmap-img button > img{
+    margin-left: 10px;
+}

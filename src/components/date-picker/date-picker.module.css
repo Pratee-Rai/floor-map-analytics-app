@@ -1,0 +1,12 @@
+.datePicker{
+    border: 0.5px solid #4c4c4c;
+    display: flex;
+    align-items: center;
+    min-width: 100px;
+    padding: 0 5px;
+}
+
+.typeText{
+    border: none;
+    width: calc(100% - 20px);
+}
