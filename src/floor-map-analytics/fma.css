@@ -1,8 +1,10 @@
 h1 {
   text-align: left;
+  margin-top: 6px;
   margin-bottom: 16px;
   font-size: 22px;
   font-weight: 600;
+  color: #003765;
 }
 
 .fma-content {
@@ -122,4 +124,20 @@ h1 {
   position: absolute;
   top: -45px;
   right: -50px;
+}
+
+.occupancy-rate .occupancy-rate-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.occupancy-rate .occupancy-rate-header select {
+  height: 24px;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 11px;
+}
+
+.occupancy-rate .occupancy-rate-header select[name="frequency"] {
+  width: 95px;
 }

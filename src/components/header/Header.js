@@ -1,4 +1,5 @@
 import logo from "../../images/innova-logo.svg";
+import expandMoreIcon from "../../images/icons/expand-more.svg";
 import headerStyles from "./Header.module.css";
 export default function Header() {
   return (
@@ -9,7 +10,10 @@ export default function Header() {
         alt="Innova Solutions Logo"
         height={60}
       />
-      <div className={headerStyles.accountInfo}></div>
+      <div className={headerStyles.accountInfo}>
+        <div className={headerStyles.profileIcon}>A</div>
+        <img src={expandMoreIcon} alt="Expand More" />
+      </div>
     </header>
   );
 }

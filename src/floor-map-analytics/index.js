@@ -64,18 +64,20 @@ export default function FloorMapAnalytics() {
           <Heatmap {...{ location, area }} />
           <div className="occupancy-rate">
             <div className="occupancy-rate-header">
-              <h3 className="occupancy-rate-title">Occupancy Rate</h3>
               <div>
+                <h3 className="occupancy-rate-title">Occupancy Rate</h3>
                 <p>
                   {location} - {area}
-                  <select
-                    name="frequency"
-                    value={frequency}
-                    onChange={handlefiltersValueChange}
-                  >
-                    {getOptions(frequencyOptions)}
-                  </select>
                 </p>
+              </div>
+              <div>
+                <select
+                  name="frequency"
+                  value={frequency}
+                  onChange={handlefiltersValueChange}
+                >
+                  {getOptions(frequencyOptions)}
+                </select>
               </div>
 
               {/* <select
