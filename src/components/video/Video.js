@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import pauseIcon from "../../images/icons/pause.svg";
 import playIcon from "../../images/icons/play.svg";
+import startOverIcon from "../../images/icons/start-over.svg";
 import "./Video.scss";
 
 export default function Video({ children, ...props }) {
@@ -27,6 +28,10 @@ export default function Video({ children, ...props }) {
     videoRef.current.currentTime = pos * videoRef.current.duration;
   };
 
+  const handleStartOver = (e) => {
+    videoRef.current.currentTime = 0;
+  };
+
   return (
     <div className="video-container">
       <video
@@ -47,12 +52,20 @@ export default function Video({ children, ...props }) {
             max={max}
           ></progress>
         </div>
-        <div>
+        <div className="video-control-buttons">
           <img
             id="playpause"
             onClick={handlePlayPause}
             src={pause ? playIcon : pauseIcon}
             alt="Play/Pause"
+            width={40}
+            height={40}
+          />
+          <img
+            id="start-over"
+            onClick={handleStartOver}
+            src={startOverIcon}
+            alt="start over"
             width={40}
             height={40}
           />

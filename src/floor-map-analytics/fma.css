@@ -1,8 +1,10 @@
 h1 {
   text-align: left;
+  margin-top: 6px;
   margin-bottom: 16px;
   font-size: 22px;
   font-weight: 600;
+  color: #003765;
 }
 
 .fma-content {

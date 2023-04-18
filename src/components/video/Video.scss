@@ -25,11 +25,8 @@
       cursor: pointer;
     }
 
-    .videoButtons {
-      background-color: #0000;
-      border: none;
-      text-align: left;
-      margin-left: -5px;
+    .video-control-buttons > img:active {
+      opacity: 0.5;
     }
 
     #playpause {
