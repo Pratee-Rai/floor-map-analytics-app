@@ -22,6 +22,7 @@ export default function FloorMapAnalytics() {
     frequency: frequencyOptions[0],
     analyticsDate: "",
   });
+  const [time, setTime] = useState(0);
 
   const handlefiltersValueChange = (e) => {
     console.log(e.target.value);
@@ -86,7 +87,7 @@ export default function FloorMapAnalytics() {
                   </select> */}
             </div>
             <>
-              <CreateGraph />
+              <CreateGraph selectedfrequency={frequency} selectedTime={time} />
             </>
           </div>
         </div>
