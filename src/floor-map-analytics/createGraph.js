@@ -92,13 +92,15 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
             setFormattedData(result);
             setTotalCount(0);
             setDataCopy(result);
-        } else if(timeDigit === 1){
+        } else {
+            console.log('here', timeDigit)
             setDataCopy(data);
         }
 
     }, [selectedfrequency, data, formattedData?.length])
 
     console.log(data)
+    console.log(dataCopy)
     return (
         <>
             <AreaChart
