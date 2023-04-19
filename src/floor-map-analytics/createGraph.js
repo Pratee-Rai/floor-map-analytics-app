@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Papa from "papaparse";
 import {
     AreaChart,
@@ -9,7 +9,7 @@ import {
     Tooltip,
     ReferenceLine,
 } from "recharts";
-import outputFile from "../data/output-minute.csv";
+import outputFile from "../data/BayArea1/output_bay_area1.csv";
 
 const CreateGraph = ({ selectedfrequency, selectedTime }) => {
     const [data, setData] = useState([]);
@@ -41,21 +41,21 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
         }
         getData();
     }, []);
+    
 
-    useEffect(() => {
+    const handleUpdateMaxAVg = useCallback((d) => {
         let total = 0;
-        if (data?.length !== 0 && data?.length !== undefined && totalCount === 0) {
-            total = data
+        total = d
                 .map(function (a) {
-                    return a.people;
+                    return a.employees;
                 })
                 .reduce(function (a, b) {
                     return a + b;
                 });
-            let avg = total / data?.length;
-            const max = data
+            let avg = total / d?.length;
+            const max = d
                 .map(function (a) {
-                    return a.people;
+                    return a.employees;
                 })
                 .reduce(function (prev, current) {
                     return prev > current ? prev : current;
@@ -63,6 +63,12 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
             setTotalCount(total);
             setAvgCount(Math.round(avg));
             setMaxCount(max + 1);
+    }, [])
+
+    useEffect(() => {
+        
+        if (data?.length !== 0 && data?.length !== undefined && totalCount === 0) {
+            handleUpdateMaxAVg(data)
         }
     }, [data, totalCount]);
 
@@ -95,10 +101,12 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
             setFormattedData(result);
             setTotalCount(0);
             setDataCopy(result);
+            handleUpdateMaxAVg(result);
         } else {
             setDataCopy([]);
+            // handleUpdateMaxAVg(data);
         }
-    }, [selectedfrequency, data, formattedData?.length]);
+    }, [selectedfrequency, data, formattedData?.length, handleUpdateMaxAVg]);
 
     return (
         <>
@@ -138,7 +146,7 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
                     align="right"
                     verticalAlign="bottom"
                 /> */}
-                <Area type="monotone" dataKey="people" fill="#6ca7f5" />
+                <Area type="monotone" dataKey="employees" fill="#6ca7f5" />
             </AreaChart>
 
         </>

@@ -5,8 +5,10 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { SingleInputTimeRangeField } from '@mui/x-date-pickers-pro/SingleInputTimeRangeField';
+import { InputAdornment, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 import CreateGraph from "./createGraph";
 import Heatmap from "./Heatmap";
 import "./fma.css";
@@ -32,31 +34,33 @@ export default function FloorMapAnalytics() {
     frequency: frequencyOptions[0],
     analyticsDate: "",
   });
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState();
 
   let currentDateTime = moment().format();
   let updatedCurrentDateTime = moment(currentDateTime).add(1, 'minute')
 
-  const [customTimeData, setCustomTimeData] = useState([dayjs(currentDateTime), updatedCurrentDateTime])
-  const [value, setValue] = useState('21:58:00-20:10:00');
+  const [customTimeData, setCustomTimeData] = useState([dayjs(currentDateTime), dayjs(updatedCurrentDateTime)])
+  const [value, setValue] = useState('12:48:30-12:59:02');
 
   const timeOptions = [
-    { label: '21:58:00-20:10:00', value: '21:58:00-20:10:00' },
+    { label: '12:48:30-12:59:02', value: '12:48:30-12:59:02' },
     { label: 'Custom', value: 'Custom' },
   ];
 
   const handlefiltersValueChange = (e) => {
-    console.log(e.target.value);
     setFilters((filters) => ({ ...filters, [e.target.name]: e.target.value }));
   };
 
   const handleChange = (e) => {
-
     const valReceived = e.target.value;
     setValue(valReceived);
-    timeOptions.push({ label: valReceived, value: valReceived });
-
   }
+
+  const handleOnClose = () => {
+    // timeOptions.push({ label: customTimeData, value: customTimeData });
+    setTime(customTimeData);
+  }
+ 
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -109,11 +113,11 @@ export default function FloorMapAnalytics() {
                   {getOptions(frequencyOptions)}
                 </select>
                 {value !== 'Custom' ?
-                    <select value={value} onChange={handleChange}>
-                      {timeOptions.map((option) => (
-                        <option value={option.value}>{option.label}</option>
-                      ))}
-                    </select>
+                  <select value={value} onChange={handleChange}>
+                    {timeOptions.map((option) => (
+                      <option key={option.value} value={option.value}>{option.label}</option>
+                    ))}
+                  </select>
                   :
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer
@@ -124,47 +128,30 @@ export default function FloorMapAnalytics() {
                         value={customTimeData}
                         onChange={(newVal) => setCustomTimeData(newVal)}
                         size='small'
-                        sx={{ lineHeight: '20px', padding: '0', width: 200 }}
-
+                        sx={{ padding: 0, width: 200, height: 80,
+                          "& .MuiInputBase, .MuiInputBase": {
+                            width: '250px'
+                        }}}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton edge="end" >
+                                <CloseIcon onClick={handleOnClose} />
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
                       />
                     </DemoContainer>
 
                   </LocalizationProvider>
                 }
               </div>
-
-              {/* {value !== 'Custom' ?
-                <select value={value} onChange={handleChange}>
-                  {timeOptions.map((option) => (
-                    <option value={option.value}>{option.label}</option>
-                  ))}
-                </select> :
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer
-                  components={['SingleInputTimeRangeField']}
-                >
-                  <SingleInputTimeRangeField 
-                  label="Time Selector" 
-                  value={customTimeData}
-                  onChange={(newVal) => setCustomTimeData(newVal)}
-                  size='small'
-                  sx={{ lineHeight: '20px', padding: '0', width: 200}}
-                  
-                  />
-                </DemoContainer>
-
-              </LocalizationProvider>
-              } */}
-
             </div>
             <>
-              <CreateGraph selectedfrequency={frequency} selectedTime={time} />
+              <CreateGraph selectedfrequency={frequency} selectedTime={time} area={area} />
             </>
           </div>
-
-
-
-
         </div>
       </div>
     </Box>
