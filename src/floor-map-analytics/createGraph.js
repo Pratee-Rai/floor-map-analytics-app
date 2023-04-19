@@ -49,15 +49,18 @@ const CreateGraph = ({ selectedfrequency, selectedTime, location, area }) => {
     
 
     const handleUpdateMaxAVg = useCallback((d) => {
+
         let total = 0;
-        total = d
+        if(d?.length > 0){
+            console.log(d)
+            total = d
                 .map(function (a) {
                     return a.employees;
                 })
                 .reduce(function (a, b) {
                     return a + b;
                 });
-            let avg = total / d?.length;
+            const avg = total / d?.length;
             const max = d
                 .map(function (a) {
                     return a.employees;
@@ -65,9 +68,13 @@ const CreateGraph = ({ selectedfrequency, selectedTime, location, area }) => {
                 .reduce(function (prev, current) {
                     return prev > current ? prev : current;
                 });
+            console.log(total, avg, max)
             setTotalCount(total);
             setAvgCount(Math.round(avg));
             setMaxCount(max + 1);
+
+        }
+        
     }, [])
 
     useEffect(() => {
@@ -78,7 +85,9 @@ const CreateGraph = ({ selectedfrequency, selectedTime, location, area }) => {
     }, [data, totalCount, handleUpdateMaxAVg]);
 
     useEffect(() => {
-        const timeDigit = selectedfrequency.split(" ")[0];
+        const timeDigit = parseInt(selectedfrequency.split(" ")[0]);
+
+        console.log(typeof timeDigit)
         if (timeDigit > 1) {
             const timeToMs = timeDigit * 60 * 1000;
             let result = [data[0]];
@@ -105,16 +114,14 @@ const CreateGraph = ({ selectedfrequency, selectedTime, location, area }) => {
 
             handleUpdateMaxAVg(result);
             setFormattedData(result);
-            setTotalCount(0);
             setDataCopy(result);
 
         } else if(timeDigit === 1){
+            setTotalCount(0);
             handleUpdateMaxAVg(data);
             setDataCopy([]);
 
-        } else{
-            setDataCopy([]);
-        }
+        } 
     }, [selectedfrequency, data, formattedData?.length, handleUpdateMaxAVg]);
 
     return (
