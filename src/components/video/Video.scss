@@ -8,12 +8,24 @@
     width: 100%;
     box-sizing: border-box;
 
+    progress::-webkit-progress-bar {
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
     progress::-moz-progress-bar {
-      background-color: #ff2e00;
+      border-radius: 5px;
+      background-color: #fff;
     }
 
     progress::-webkit-progress-value {
       background-color: #ff2e00;
+      border-radius: 5px;
+    }
+
+    progress::-moz-progress-value {
+      background-color: #ff2e00;
+      border-radius: 5px;
     }
 
     progress {
