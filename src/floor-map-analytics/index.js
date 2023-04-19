@@ -59,6 +59,7 @@ export default function FloorMapAnalytics() {
   const handleOnClose = () => {
     // timeOptions.push({ label: customTimeData, value: customTimeData });
     setTime(customTimeData);
+    setValue(customTimeData);
   }
  
 
@@ -135,8 +136,8 @@ export default function FloorMapAnalytics() {
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
-                              <IconButton edge="end" >
-                                <CloseIcon onClick={handleOnClose} />
+                              <IconButton edge="end" onClick={handleOnClose}>
+                                <CloseIcon />
                               </IconButton>
                             </InputAdornment>
                           ),
