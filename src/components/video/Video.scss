@@ -1,5 +1,17 @@
 .video-container {
   position: relative;
+  .close-video {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
   .controls {
     position: absolute;
     bottom: 0;

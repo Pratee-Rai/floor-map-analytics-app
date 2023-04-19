@@ -11,6 +11,10 @@ export default function Heatmap({ location, area }) {
     setIsWatching(true);
   };
 
+  const handleCloseVideo = (e) => {
+    setIsWatching(false);
+  };
+
   useEffect(() => {
     setIsWatching(false);
   }, [area]);
@@ -28,20 +32,26 @@ export default function Heatmap({ location, area }) {
           <>
             {!isWatching ? (
               <>
-                <img src={heatmapImg} alt="Heat Map" height={434} width={572} />
+                <img
+                  src={`./media/${location}/${area}/heatmap.png`}
+                  alt="Heat Map"
+                  height={434}
+                  width={572}
+                />
                 <button className="play-button" onClick={handleWatchNowClick}>
                   Watch Video <img src={tvLogo} alt="tv logo" />
                 </button>
-                <img
-                  className="area-path-image"
-                  src={areaPath}
-                  alt="Path to different areas"
-                />
               </>
             ) : (
-              <Video height={434} width={572} controls autoPlay>
+              <Video
+                height={434}
+                width={572}
+                autoPlay
+                showCloseButton
+                onClose={handleCloseVideo}
+              >
                 <source
-                  src={`./media/${area}/output-seg-heat.mp4`}
+                  src={`./media/${location}/${area}/output-seg.mp4`}
                   type="video/mp4"
                 />
               </Video>

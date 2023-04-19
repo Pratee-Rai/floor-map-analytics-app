@@ -140,6 +140,7 @@ h1 {
   border-radius: 4px;
   padding: 5px;
   font-size: 11px;
+  margin-left: 5px;
 }
 
 .occupancy-rate .occupancy-rate-header select[name="frequency"] {
