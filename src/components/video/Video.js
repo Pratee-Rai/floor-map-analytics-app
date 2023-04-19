@@ -2,9 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import pauseIcon from "../../images/icons/pause.svg";
 import playIcon from "../../images/icons/play.svg";
 import startOverIcon from "../../images/icons/start-over.svg";
+import closeIcon from "../../images/icons/close.svg";
 import "./Video.scss";
 
-export default function Video({ children, ...props }) {
+export default function Video({
+  children,
+  showCloseButton,
+  onClose,
+  ...props
+}) {
   const [pause, setPause] = useState(false);
   const [max, setMax] = useState(0);
   const [progress, setProgress] = useState(100);
@@ -42,6 +48,16 @@ export default function Video({ children, ...props }) {
       >
         {children}
       </video>
+      {showCloseButton && (
+        <img
+          className="close-video"
+          onClick={onClose}
+          src={closeIcon}
+          alt="Close"
+          width={24}
+          height={24}
+        />
+      )}
       <div className="controls">
         <div className="progress">
           <progress
