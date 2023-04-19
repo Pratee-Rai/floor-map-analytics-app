@@ -150,7 +150,7 @@ export default function FloorMapAnalytics() {
               </div>
             </div>
             <>
-              <CreateGraph selectedfrequency={frequency} selectedTime={time} area={area} />
+              <CreateGraph selectedfrequency={frequency} selectedTime={time} area={area} location={location}/>
             </>
           </div>
         </div>

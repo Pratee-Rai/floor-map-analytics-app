@@ -9,20 +9,25 @@ import {
     Tooltip,
     ReferenceLine,
 } from "recharts";
-import outputFile from "../data/BayArea1/output_bay_area1.csv";
+import file1 from "../data/BayArea1/output.csv";
+import file2 from "../data/BayArea2/output.csv";
+import file3 from "../data/Cafeteria/output.csv";
 
-const CreateGraph = ({ selectedfrequency, selectedTime }) => {
+const CreateGraph = ({ selectedfrequency, selectedTime, location, area }) => {
+
+    const file = (area === 'Bay Area 1') ? file1 : (area === 'Bay Area 2') ? file2 : file3;
+
     const [data, setData] = useState([]);
     const [dataCopy, setDataCopy] = useState([]);
     const [totalCount, setTotalCount] = useState(0);
     const [avgCount, setAvgCount] = useState(0);
     const [maxCount, setMaxCount] = useState(0);
-    const [formattedData, setFormattedData] = useState();
-    // const legendData = [{ "id": 1, "text": "Max capacity" }]
+    const [formattedData, setFormattedData] = useState([]);
 
     useEffect(() => {
         async function getData() {
-            const response = await fetch(outputFile);
+
+            const response = await fetch(file);
             const reader = response.body.getReader();
             const result = await reader.read();
             const decoder = new TextDecoder("utf-8");
@@ -40,7 +45,7 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
             });
         }
         getData();
-    }, []);
+    }, [file]);
     
 
     const handleUpdateMaxAVg = useCallback((d) => {
@@ -68,9 +73,9 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
     useEffect(() => {
         
         if (data?.length !== 0 && data?.length !== undefined && totalCount === 0) {
-            handleUpdateMaxAVg(data)
+            handleUpdateMaxAVg(data);
         }
-    }, [data, totalCount]);
+    }, [data, totalCount, handleUpdateMaxAVg]);
 
     useEffect(() => {
         const timeDigit = selectedfrequency.split(" ")[0];
@@ -98,56 +103,65 @@ const CreateGraph = ({ selectedfrequency, selectedTime }) => {
                 }
             }
 
+            handleUpdateMaxAVg(result);
             setFormattedData(result);
             setTotalCount(0);
             setDataCopy(result);
-            handleUpdateMaxAVg(result);
-        } else {
+
+        } else if(timeDigit === 1){
+            handleUpdateMaxAVg(data);
             setDataCopy([]);
-            // handleUpdateMaxAVg(data);
+
+        } else{
+            setDataCopy([]);
         }
     }, [selectedfrequency, data, formattedData?.length, handleUpdateMaxAVg]);
 
     return (
         <>
+        {   location === 'Hyderabad' ?
             <AreaChart
-                width={650}
-                height={650 * 0.6}
-                data={dataCopy.length > 1 ? dataCopy : data}
-                margin={{
-                    top: 50,
-                    right: 20,
-                    left: 0,
-                    bottom: 0,
+            width={650}
+            height={650 * 0.6}
+            data={dataCopy.length > 1 ? dataCopy : data}
+            margin={{
+                top: 50,
+                right: 20,
+                left: 0,
+                bottom: 0,
+            }}
+        >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+                dataKey="timespan"
+                stroke="#000000"
+                fontSize="10"
+                label={{
+                    value: "Time Stamp",
+                    position: "insideBottom",
+                    fontSize: 14,
                 }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                    dataKey="timespan"
-                    stroke="#000000"
-                    fontSize="10"
-                    label={{
-                        value: "Time Stamp",
-                        position: "insideBottom",
-                        fontSize: 14,
-                    }}
-                />
-                <YAxis
-                    fontSize="10"
-                    axisLine={false}
-                    label={{ value: "Employee Count", angle: -90, fontSize: 14 }}
-                />
-                <Tooltip />
-                <ReferenceLine y={maxCount} stroke="red" strokeDasharray="3 3" strokeWidth={2} label={{value:"Max capacity", position: "top"}} />
-                <ReferenceLine y={avgCount} stroke="blue" strokeWidth={3} label={{value:"Average occupancy", position: "top"}} />
-                {/* <Legend
-                    iconType="circle"
-                    layout="horizontal"
-                    align="right"
-                    verticalAlign="bottom"
-                /> */}
-                <Area type="monotone" dataKey="employees" fill="#6ca7f5" />
-            </AreaChart>
+            />
+            <YAxis
+                fontSize="10"
+                axisLine={false}
+                label={{ value: "Employee Count", angle: -90, fontSize: 14 }}
+            />
+            <Tooltip />
+            <ReferenceLine y={maxCount} stroke="red" strokeDasharray="3 3" strokeWidth={2} label={{value:"Max capacity", position: "top"}} />
+            <ReferenceLine y={avgCount} stroke="blue" strokeWidth={3} label={{value:"Average occupancy", position: "top"}} />
+            {/* <Legend
+                iconType="circle"
+                layout="horizontal"
+                align="right"
+                verticalAlign="bottom"
+            /> */}
+            <Area type="monotone" dataKey="employees" fill="#6ca7f5" />
+        </AreaChart>
+            :
+            'No data available'
+        }
+            
 
         </>
     );
