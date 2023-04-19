@@ -1,4 +1,6 @@
 .main {
   background-color: #eff2fa;
   padding: 5px 20px 0 30px;
+  min-width: fit-content;
+  margin: 0;
 }
