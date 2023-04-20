@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import pauseIcon from "../../images/icons/pause.svg";
 import playIcon from "../../images/icons/play.svg";
 import startOverIcon from "../../images/icons/start-over.svg";

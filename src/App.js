@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FloorMapAnalytics from "./floor-map-analytics";
 
 function App() {
@@ -9,11 +9,12 @@ function App() {
     <div className="App">
       <Header />
       <Main>
-        <BrowserRouter>
+        <FloorMapAnalytics />
+        {/* <BrowserRouter>
           <Routes>
             <Route path="/" element={<FloorMapAnalytics />} />
           </Routes>
-        </BrowserRouter>
+        </BrowserRouter> */}
       </Main>
     </div>
   );

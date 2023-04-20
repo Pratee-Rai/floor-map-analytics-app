@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import heatmapImg from "../images/heatmap.png";
 import tvLogo from "../images/icons/live-tv.svg";
 import directionsIcon from "../images/icons/directions.svg";
-import areaPath from "../images/icons/area-path.svg";
 import Video from "../components/video/Video";
 export default function Heatmap({ location, area }) {
   const [isWatching, setIsWatching] = useState(false);

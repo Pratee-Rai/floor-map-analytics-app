@@ -2,6 +2,7 @@
 
 #unnecessary Media
 /public/media/Hyderabad/*?/*?.mp4
+/build*.zip
 
 # dependencies
 /node_modules
@@ -12,7 +13,7 @@
 /coverage
 
 # production
-/build
+/build/media/Hyderabad/*?/*?.mp4
 
 # misc
 .DS_Store

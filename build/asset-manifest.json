@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/floor/static/css/main.27504177.css",
+    "main.js": "/floor/static/js/main.1187eb6c.js",
+    "static/js/787.0b4153a8.chunk.js": "/floor/static/js/787.0b4153a8.chunk.js",
+    "static/media/innova-logo.svg": "/floor/static/media/innova-logo.b922c99f2bf77af9e650afa5ab488610.svg",
+    "static/media/pause.svg": "/floor/static/media/pause.661990591860a350c713ee036a927c15.svg",
+    "static/media/start-over.svg": "/floor/static/media/start-over.4345318d1433f2b736a2973599229b5e.svg",
+    "static/media/play.svg": "/floor/static/media/play.6a570b62e16b3b0eaf51e800ad5871d4.svg",
+    "static/media/directions.svg": "/floor/static/media/directions.8fdfa3c71467a541c4da53f84dbc3e8b.svg",
+    "static/media/live-tv.svg": "/floor/static/media/live-tv.d902d73c475eb92d13cb1b35731c0fe7.svg",
+    "index.html": "/floor/index.html",
+    "static/media/close.svg": "/floor/static/media/close.1a29d514796ef6a1409dc87a99359303.svg",
+    "static/media/expand-more.svg": "/floor/static/media/expand-more.bb283952c5b8e93990a669bcb0289ff5.svg",
+    "static/media/output.csv": "/floor/static/media/output.c7d7ecebbf3dc68fa927.csv",
+    "main.27504177.css.map": "/floor/static/css/main.27504177.css.map",
+    "main.1187eb6c.js.map": "/floor/static/js/main.1187eb6c.js.map",
+    "787.0b4153a8.chunk.js.map": "/floor/static/js/787.0b4153a8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.27504177.css",
+    "static/js/main.1187eb6c.js"
+  ]
+}
