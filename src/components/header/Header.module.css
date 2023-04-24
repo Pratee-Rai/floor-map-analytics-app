@@ -30,4 +30,5 @@
     #008bff 8.89%,
     rgba(0, 71, 130, 0.77) 85.06%
   );
+  box-sizing: content-box;
 }

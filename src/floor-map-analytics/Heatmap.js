@@ -24,51 +24,54 @@ export default function Heatmap({ location, area }) {
   }, [area, location]);
 
   return (
-    <div className="heatmap">
+    <div className="heatmap col-lg-7">
       <div className="heatmap-header">
         <h3 className="heatmap-title">Heat Map</h3>
         <p>
           {location} - {area}
         </p>
       </div>
-      {!isImgError && (
-        <div className="heatmap-content">
-          <div className="heatmap-img">
-            <>
-              {!isWatching ? (
-                <>
-                  <img
-                    src={`./media/${location}/${area}/heatmap.png`}
-                    onError={handleHeatmapImgError}
-                    alt="Heat Map"
-                    height={434}
-                    width={572}
-                  />
-                  <button className="play-button" onClick={handleWatchNowClick}>
-                    Watch Video <img src={tvLogo} alt="tv logo" />
-                  </button>
-                </>
-              ) : (
-                <Video
-                  height={434}
-                  width={572}
-                  autoPlay
-                  showCloseButton
-                  onClose={handleCloseVideo}
-                >
-                  <source
-                    src={`./media/${location}/${area}/output-seg.mp4`}
-                    type="video/mp4"
-                  />
-                </Video>
-              )}
-            </>
+      <div className="row justify-content-center">
+        {!isImgError && (
+          <div className="heatmap-content col-10 justify-content-center">
+            <div className="heatmap-img row">
+              <>
+                {!isWatching ? (
+                  <>
+                    <img
+                      className="col-12"
+                      src={`./media/${location}/${area}/heatmap.png`}
+                      onError={handleHeatmapImgError}
+                      alt="Heat Map"
+                    />
+                    <button
+                      className="play-button"
+                      onClick={handleWatchNowClick}
+                    >
+                      Watch Video <img src={tvLogo} alt="tv logo" />
+                    </button>
+                  </>
+                ) : (
+                  <Video
+                    className="col-12"
+                    autoPlay
+                    showCloseButton
+                    onClose={handleCloseVideo}
+                  >
+                    <source
+                      src={`./media/${location}/${area}/output-seg.mp4`}
+                      type="video/mp4"
+                    />
+                  </Video>
+                )}
+              </>
+            </div>
+            <div className="directions">
+              <img src={directionsIcon} alt="directions" />
+            </div>
           </div>
-          <div className="directions">
-            <img src={directionsIcon} alt="directions" />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

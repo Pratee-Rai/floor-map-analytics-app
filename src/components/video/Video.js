@@ -59,7 +59,7 @@ export default function Video({
         />
       )}
       <div className="controls">
-        <div className="progress">
+        <div className="video-progress-bar">
           <progress
             id="progress"
             onClick={handleSeekVideo}

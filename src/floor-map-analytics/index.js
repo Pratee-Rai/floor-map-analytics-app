@@ -65,7 +65,7 @@ export default function FloorMapAnalytics() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} className="fma">
       <h1>Floor Map Analytics</h1>
       <div className="fma-content">
         <div className="fma-content-header">
@@ -95,9 +95,9 @@ export default function FloorMapAnalytics() {
             />
           </div>
         </div>
-        <div className="fma-content-start">
+        <div className="fma-content-start row">
           <Heatmap {...{ location, area }} />
-          <div className="occupancy-rate">
+          <div className="occupancy-rate col-lg-5">
             <div className="occupancy-rate-header">
               <div>
                 <h3 className="occupancy-rate-title">Occupancy Rate</h3>
@@ -153,11 +153,14 @@ export default function FloorMapAnalytics() {
               </div>
             </div>
             <>
-              <CreateGraph
-                selectedfrequency={frequency}
-                selectedTime={time}
-                area={area}
-                location={location} />
+              <div className="row justify-content-center">
+                <CreateGraph
+                  selectedfrequency={frequency}
+                  selectedTime={time}
+                  area={area}
+                  location={location}
+                />
+              </div>
             </>
           </div>
         </div>
