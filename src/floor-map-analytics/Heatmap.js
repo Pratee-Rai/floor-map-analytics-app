@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import tvLogo from "../images/icons/live-tv.svg";
 import directionsIcon from "../images/icons/directions.svg";
 import Video from "../components/video/Video";
 export default function Heatmap({ location, area }) {
   const [isWatching, setIsWatching] = useState(false);
   const [isImgError, setIsImgError] = useState(false);
-
+  const hmImageContainerRef = useRef();
+  const imgRef = useRef();
   const handleWatchNowClick = (e) => {
     setIsWatching(true);
   };
@@ -16,6 +17,11 @@ export default function Heatmap({ location, area }) {
 
   const handleCloseVideo = (e) => {
     setIsWatching(false);
+  };
+
+  const handleImageResize = (e) => {
+    const imageHeight = imgRef.current.offsetHeight;
+    hmImageContainerRef.current.style.height = `${imageHeight}px`;
   };
 
   useEffect(() => {
@@ -34,14 +40,16 @@ export default function Heatmap({ location, area }) {
       <div className="row justify-content-center">
         {!isImgError && (
           <div className="heatmap-content col-10 justify-content-center">
-            <div className="heatmap-img row">
+            <div ref={hmImageContainerRef} className="heatmap-img row">
               <>
                 {!isWatching ? (
                   <>
                     <img
+                      ref={imgRef}
                       className="col-12"
                       src={`./media/${location}/${area}/heatmap.png`}
                       onError={handleHeatmapImgError}
+                      onResize={handleImageResize}
                       alt="Heat Map"
                     />
                     <button
