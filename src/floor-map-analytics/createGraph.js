@@ -117,7 +117,7 @@ const CreateGraph = ({ selectedfrequency, selectedTime, location, area }) => {
     <>
       {location === "Hyderabad" ? (
         <AreaChart
-          className="col-lg-10"
+          className="row justify-content-center"
           width={550}
           height={550 * 0.6}
           data={dataCopy.length > 1 ? dataCopy : data}

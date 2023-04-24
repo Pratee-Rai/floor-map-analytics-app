@@ -67,8 +67,8 @@ export default function FloorMapAnalytics() {
   return (
     <Box sx={{ flexGrow: 1 }} className="fma">
       <h1>Floor Map Analytics</h1>
-      <div className="fma-content">
-        <div className="fma-content-header">
+      <div className="fma-content row justify-content-center">
+        <div className="fma-content-header col-lg-12">
           <h2>Occupancy Statistics</h2>
           <div className="filters">
             <p>Filter By:</p>
@@ -95,7 +95,7 @@ export default function FloorMapAnalytics() {
             />
           </div>
         </div>
-        <div className="fma-content-start row">
+        <div className="fma-content-start row col-lg-12">
           <Heatmap {...{ location, area }} />
           <div className="occupancy-rate col-lg-5">
             <div className="occupancy-rate-header">
@@ -105,7 +105,7 @@ export default function FloorMapAnalytics() {
                   {location} - {area}
                 </p>
               </div>
-              <div>
+              <div className="d-flex align-items-center">
                 <select
                   name="frequency"
                   value={frequency}
@@ -123,24 +123,54 @@ export default function FloorMapAnalytics() {
                   </select>
                 ) : (
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["SingleInputTimeRangeField"]}>
+                    <DemoContainer
+                      sx={{
+                        p: 0,
+                        ml: "5px",
+                        "&>.MuiTextField-root": {
+                          "&.MuiFormControl-root": {
+                            minWidth: 150,
+                          },
+                        },
+                      }}
+                      components={["SingleInputTimeRangeField"]}
+                    >
                       <SingleInputTimeRangeField
-                        label="Time Selector"
+                        // label="Time Selector"
                         value={customTimeData}
                         onChange={(newVal) => setCustomTimeData(newVal)}
                         size="small"
                         sx={{
                           padding: 0,
-                          width: 200,
-                          height: 80,
-                          "& .MuiInputBase, .MuiInputBase": {
-                            width: "250px",
+                          width: 100,
+                          height: 24,
+                          overflow: "hidden",
+                          minWidth: 100,
+                          "& input": {
+                            fontSize: 11,
+                            height: 24,
+                            padding: 0,
+                            pl: "5px",
+                          },
+                          "& fieldset": {
+                            border: "1px solid black",
                           },
                         }}
                         InputProps={{
                           endAdornment: (
                             <InputAdornment position="end">
-                              <IconButton edge="end" onClick={handleOnClose}>
+                              <IconButton
+                                sx={{
+                                  padding: 0,
+                                  width: 24,
+                                  height: 24,
+                                  "& svg": {
+                                    width: 20,
+                                  },
+                                }}
+                                edge="end"
+                                onClick={handleOnClose}
+                              >
                                 <CloseIcon />
                               </IconButton>
                             </InputAdornment>

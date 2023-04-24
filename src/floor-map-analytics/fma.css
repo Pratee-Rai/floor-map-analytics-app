@@ -12,12 +12,13 @@
   border-radius: 12px;
 }
 
-.fma-content-header {
+.fma .fma-content-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 54px;
   border-bottom: 2px solid #d8dbe5;
+  padding: 0;
 }
 
 .fma-content-header h2 {
@@ -67,10 +68,6 @@
 
 .occupancy-rate {
   padding: 15px 0 5% 10px;
-}
-
-.heatmap-header {
-  margin-left: 15px;
 }
 
 .heatmap-title,
@@ -144,4 +141,15 @@
 
 .occupancy-rate .occupancy-rate-header select[name="frequency"] {
   width: 95px;
+}
+
+@media (max-width: 990px) {
+  .heatmap {
+    border-bottom: 2px solid #d8dbe5;
+    border-right: none;
+  }
+
+  .fma-content-start.row {
+    padding: 0;
+  }
 }
