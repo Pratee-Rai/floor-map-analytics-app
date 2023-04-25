@@ -1,11 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App{
-    border: 1px solid #959595;
-    font-family: Inter;
+.App {
+  position: relative;
+  border: 1px solid #959595;
+  font-family: Inter;
+  background-color: #eff2fa;
+  min-height: 100vh;
+  padding-bottom: 40px;
 }
