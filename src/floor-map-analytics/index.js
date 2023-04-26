@@ -74,29 +74,34 @@ export default function FloorMapAnalytics() {
       <div className="fma-content row flex-grow-1 flex-column">
         <div className="fma-content-header d-lg-flex col-lg-12">
           <h2 className="mb-lg-0">Occupancy Statistics</h2>
-          <div className="filters">
+          <div className="filters d-flex h-auto-value h-md-32px">
             <p>Filter By:</p>
-            <select
-              name="location"
-              value={location}
-              onChange={handlefiltersValueChange}
-            >
-              {getOptions(locationOptions)}
-            </select>
-            <select
-              name="area"
-              value={area}
-              onChange={handlefiltersValueChange}
-            >
-              {getOptions(areaOptions)}
-            </select>
-            <input
-              type="date"
-              name="analyticsDate"
-              placeholder="Date"
-              value={analyticsDate}
-              onChange={handlefiltersValueChange}
-            />
+            <div className="d-flex flex-xs-column flex-column flex-sm-column flex-lg-row flex-md-row">
+              <select
+                className="mb-1 mb-md-0"
+                name="location"
+                value={location}
+                onChange={handlefiltersValueChange}
+              >
+                {getOptions(locationOptions)}
+              </select>
+              <select
+                className="mb-1 mb-md-0"
+                name="area"
+                value={area}
+                onChange={handlefiltersValueChange}
+              >
+                {getOptions(areaOptions)}
+              </select>
+              <input
+                className="mb-1 mb-md-0"
+                type="date"
+                name="analyticsDate"
+                placeholder="Date"
+                value={analyticsDate}
+                onChange={handlefiltersValueChange}
+              />
+            </div>
           </div>
         </div>
         <div className="fma-content-start d-flex flex-grow-1 col-lg-12">
