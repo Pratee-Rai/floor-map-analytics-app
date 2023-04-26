@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import CreateGraph from "./createGraph";
 import Heatmap from "./Heatmap";
 import "./fma.css";
+import "./utilities.scss";
 
 const locationOptions = ["Hyderabad", "Noida", "Pune", "Chennai"];
 const areaOptions = ["Bay Area 1", "Bay Area 2", "Cafeteria"];
@@ -71,8 +72,8 @@ export default function FloorMapAnalytics() {
     >
       <h1 className="row">Floor Map Analytics</h1>
       <div className="fma-content row flex-grow-1 flex-column">
-        <div className="fma-content-header col-lg-12">
-          <h2>Occupancy Statistics</h2>
+        <div className="fma-content-header d-lg-flex col-lg-12">
+          <h2 className="mb-lg-0">Occupancy Statistics</h2>
           <div className="filters">
             <p>Filter By:</p>
             <select
@@ -102,7 +103,7 @@ export default function FloorMapAnalytics() {
           <div className="row w-100">
             <Heatmap {...{ location, area }} />
             <div className="occupancy-rate d-flex flex-column col-lg-5">
-              <div className="occupancy-rate-header">
+              <div className="occupancy-rate-header d-lg-flex d-md-flex d-sm-flex">
                 <div>
                   <h3 className="occupancy-rate-title">Occupancy Rate</h3>
                   <p>

@@ -13,19 +13,16 @@
 }
 
 .fma .fma-content-header {
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 54px;
   border-bottom: 2px solid #d8dbe5;
-  padding: 0;
+  padding: 18px;
 }
 
 .fma-content-header h2 {
   font-size: 18px;
   font-weight: 600;
-  padding: 18px;
-  margin: 0;
+  margin: 0 0 10px 0;
 }
 
 .filters {
@@ -123,7 +120,6 @@
 }
 
 .occupancy-rate .occupancy-rate-header {
-  display: flex;
   justify-content: space-between;
 }
 
