@@ -21,7 +21,7 @@ $utilities: map-merge(
           responsive: true,
           values:
             map-merge(
-              map-get(map-get($utilities, "width"), "values"),
+              map-get(map-get($utilities, "height"), "values"),
               (
                 32px: 32px,
                 auto-value: auto,
