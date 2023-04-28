@@ -104,8 +104,8 @@ export default function FloorMapAnalytics() {
             </div>
           </div>
         </div>
-        <div className="fma-content-start d-flex flex-grow-1 col-lg-12">
-          <div className="row w-100">
+        <div className="fma-content-start p-0 d-flex flex-grow-1 col-lg-12">
+          <div className="row w-100 m-0">
             <Heatmap {...{ location, area }} />
             <div className="occupancy-rate d-flex flex-column col-lg-5">
               <div className="occupancy-rate-header d-lg-flex d-md-flex d-sm-flex">
