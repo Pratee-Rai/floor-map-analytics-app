@@ -24,7 +24,7 @@ const frequencyOptions = [
   "15 min",
   "20 min",
   "1 hrs",
-  "2hrs",
+  "2 hrs",
 ];
 
 export default function FloorMapAnalytics() {
