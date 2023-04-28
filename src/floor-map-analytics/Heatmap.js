@@ -12,16 +12,12 @@ export default function Heatmap({ location, area }) {
   };
 
   const handleHeatmapImgError = (e) => {
+    console.warn(e);
     setIsImgError(true);
   };
 
   const handleCloseVideo = (e) => {
     setIsWatching(false);
-  };
-
-  const handleImageResize = (e) => {
-    const imageHeight = imgRef.current.offsetHeight;
-    hmImageContainerRef.current.style.height = `${imageHeight}px`;
   };
 
   useEffect(() => {
@@ -30,14 +26,14 @@ export default function Heatmap({ location, area }) {
   }, [area, location]);
 
   return (
-    <div className="heatmap col-lg-7">
+    <div className="heatmap d-flex flex-column col-lg-7">
       <div className="heatmap-header">
         <h3 className="heatmap-title">Heat Map</h3>
         <p>
           {location} - {area}
         </p>
       </div>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center flex-grow-1 flex-column align-items-center">
         {!isImgError && (
           <div className="heatmap-content col-10 justify-content-center">
             <div ref={hmImageContainerRef} className="heatmap-img row">
@@ -49,7 +45,6 @@ export default function Heatmap({ location, area }) {
                       className="col-12"
                       src={`./media/${location}/${area}/heatmap.png`}
                       onError={handleHeatmapImgError}
-                      onResize={handleImageResize}
                       alt="Heat Map"
                     />
                     <button

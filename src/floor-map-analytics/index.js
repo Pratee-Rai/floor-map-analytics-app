@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import CreateGraph from "./createGraph";
 import Heatmap from "./Heatmap";
 import "./fma.css";
+import "./utilities.scss";
 
 const locationOptions = ["Hyderabad", "Noida", "Pune", "Chennai"];
 const areaOptions = ["Bay Area 1", "Bay Area 2", "Cafeteria"];
@@ -65,125 +66,133 @@ export default function FloorMapAnalytics() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }} className="fma">
-      <h1>Floor Map Analytics</h1>
-      <div className="fma-content row justify-content-center">
-        <div className="fma-content-header col-lg-12">
-          <h2>Occupancy Statistics</h2>
-          <div className="filters">
+    <Box
+      sx={{ flexGrow: 1 }}
+      className="fma container-fluid d-flex flex-column"
+    >
+      <h1 className="row">Floor Map Analytics</h1>
+      <div className="fma-content row flex-grow-1 flex-column">
+        <div className="fma-content-header d-lg-flex col-lg-12">
+          <h2 className="mb-lg-0">Occupancy Statistics</h2>
+          <div className="filters d-flex h-auto-value h-md-32px">
             <p>Filter By:</p>
-            <select
-              name="location"
-              value={location}
-              onChange={handlefiltersValueChange}
-            >
-              {getOptions(locationOptions)}
-            </select>
-            <select
-              name="area"
-              value={area}
-              onChange={handlefiltersValueChange}
-            >
-              {getOptions(areaOptions)}
-            </select>
-            <input
-              type="date"
-              name="analyticsDate"
-              placeholder="Date"
-              value={analyticsDate}
-              onChange={handlefiltersValueChange}
-            />
+            <div className="d-flex flex-xs-column flex-column flex-sm-column flex-lg-row flex-md-row">
+              <select
+                className="mb-1 mb-md-0"
+                name="location"
+                value={location}
+                onChange={handlefiltersValueChange}
+              >
+                {getOptions(locationOptions)}
+              </select>
+              <select
+                className="mb-1 mb-md-0"
+                name="area"
+                value={area}
+                onChange={handlefiltersValueChange}
+              >
+                {getOptions(areaOptions)}
+              </select>
+              <input
+                className="mb-1 mb-md-0"
+                type="date"
+                name="analyticsDate"
+                placeholder="Date"
+                value={analyticsDate}
+                onChange={handlefiltersValueChange}
+              />
+            </div>
           </div>
         </div>
-        <div className="fma-content-start row col-lg-12">
-          <Heatmap {...{ location, area }} />
-          <div className="occupancy-rate col-lg-5">
-            <div className="occupancy-rate-header">
-              <div>
-                <h3 className="occupancy-rate-title">Occupancy Rate</h3>
-                <p>
-                  {location} - {area}
-                </p>
-              </div>
-              <div className="d-flex align-items-center">
-                <select
-                  name="frequency"
-                  value={frequency}
-                  onChange={handlefiltersValueChange}
-                >
-                  {getOptions(frequencyOptions)}
-                </select>
-                {value !== "Custom" ? (
-                  <select value={value} onChange={handleChange}>
-                    {timeOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+        <div className="fma-content-start d-flex flex-grow-1 col-lg-12">
+          <div className="row w-100">
+            <Heatmap {...{ location, area }} />
+            <div className="occupancy-rate d-flex flex-column col-lg-5">
+              <div className="occupancy-rate-header d-lg-flex d-md-flex d-sm-flex">
+                <div>
+                  <h3 className="occupancy-rate-title">Occupancy Rate</h3>
+                  <p>
+                    {location} - {area}
+                  </p>
+                </div>
+                <div className="d-flex align-items-center">
+                  <select
+                    name="frequency"
+                    value={frequency}
+                    onChange={handlefiltersValueChange}
+                  >
+                    {getOptions(frequencyOptions)}
                   </select>
-                ) : (
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer
-                      sx={{
-                        p: 0,
-                        ml: "5px",
-                        "&>.MuiTextField-root": {
-                          "&.MuiFormControl-root": {
-                            minWidth: 150,
-                          },
-                        },
-                      }}
-                      components={["SingleInputTimeRangeField"]}
-                    >
-                      <SingleInputTimeRangeField
-                        // label="Time Selector"
-                        value={customTimeData}
-                        onChange={(newVal) => setCustomTimeData(newVal)}
-                        size="small"
+                  {value !== "Custom" ? (
+                    <select value={value} onChange={handleChange}>
+                      {timeOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer
                         sx={{
-                          padding: 0,
-                          width: 100,
-                          height: 24,
-                          overflow: "hidden",
-                          minWidth: 100,
-                          "& input": {
-                            fontSize: 11,
-                            height: 24,
+                          p: 0,
+                          ml: "5px",
+                          "&>.MuiTextField-root": {
+                            "&.MuiFormControl-root": {
+                              minWidth: 150,
+                            },
+                          },
+                        }}
+                        components={["SingleInputTimeRangeField"]}
+                      >
+                        <SingleInputTimeRangeField
+                          // label="Time Selector"
+                          value={customTimeData}
+                          onChange={(newVal) => setCustomTimeData(newVal)}
+                          size="small"
+                          sx={{
                             padding: 0,
-                            pl: "5px",
-                          },
-                          "& fieldset": {
-                            border: "1px solid black",
-                          },
-                        }}
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton
-                                sx={{
-                                  padding: 0,
-                                  width: 24,
-                                  height: 24,
-                                  "& svg": {
-                                    width: 20,
-                                  },
-                                }}
-                                edge="end"
-                                onClick={handleOnClose}
-                              >
-                                <CloseIcon />
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                )}
+                            width: 100,
+                            height: 24,
+                            overflow: "hidden",
+                            minWidth: 100,
+                            "& input": {
+                              fontSize: 11,
+                              height: 24,
+                              padding: 0,
+                              pl: "5px",
+                            },
+                            "& fieldset": {
+                              border: "1px solid black",
+                            },
+                          }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  sx={{
+                                    padding: 0,
+                                    width: 24,
+                                    height: 24,
+                                    "& svg": {
+                                      width: 20,
+                                    },
+                                  }}
+                                  edge="end"
+                                  onClick={handleOnClose}
+                                >
+                                  <CloseIcon />
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  )}
+                </div>
               </div>
-            </div>
-            <>
-              <div className="row justify-content-center">
+              <div className="row flex-grow-1 align-items-center justify-content-center">
                 <CreateGraph
                   selectedfrequency={frequency}
                   selectedTime={time}
@@ -191,7 +200,7 @@ export default function FloorMapAnalytics() {
                   location={location}
                 />
               </div>
-            </>
+            </div>
           </div>
         </div>
       </div>

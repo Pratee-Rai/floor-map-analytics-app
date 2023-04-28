@@ -3,10 +3,11 @@ import Header from "./components/header/Header";
 import Main from "./components/main/Main";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FloorMapAnalytics from "./floor-map-analytics";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App d-flex flex-column">
       <Header />
       <Main>
         <BrowserRouter basename="/floor">
@@ -15,6 +16,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Main>
+      <Footer />
     </div>
   );
 }

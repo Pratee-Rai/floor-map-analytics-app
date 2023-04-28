@@ -2,6 +2,9 @@
   text-align: center;
   font-size: 11px;
   padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .content {
