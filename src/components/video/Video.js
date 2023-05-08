@@ -4,11 +4,13 @@ import playIcon from "../../images/icons/play.svg";
 import startOverIcon from "../../images/icons/start-over.svg";
 import closeIcon from "../../images/icons/close.svg";
 import "./Video.scss";
+import { CircularProgress } from "@mui/material";
 
 export default function Video({
   children,
   showCloseButton,
   onClose,
+  loading,
   ...props
 }) {
   const [pause, setPause] = useState(false);
@@ -48,6 +50,11 @@ export default function Video({
       >
         {children}
       </video>
+      {loading && (
+        <CircularProgress
+          sx={{ position: "absolute", left: "50%", top: "calc(50% - 60px)" }}
+        />
+      )}
       {showCloseButton && (
         <img
           className="close-video"

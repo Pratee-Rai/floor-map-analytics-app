@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import tvLogo from "../images/icons/live-tv.svg";
 import directionsIcon from "../images/icons/directions.svg";
 import Video from "../components/video/Video";
-export default function Heatmap({ location, area }) {
+import { getVideo } from "../utilities/video";
+export default function Heatmap({ location, area, timeRangeValue }) {
   const [isWatching, setIsWatching] = useState(false);
   const [isImgError, setIsImgError] = useState(false);
+  const [heatmapVideoUrl, setHeatmapVideoUrl] = useState();
+  console.log(heatmapVideoUrl);
   const hmImageContainerRef = useRef();
   const imgRef = useRef();
   const handleWatchNowClick = (e) => {
@@ -20,8 +23,19 @@ export default function Heatmap({ location, area }) {
     setIsWatching(false);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setHeatmapVideoUrl();
+    getVideo({
+      timeRangeValue,
+    }).then(({ url }) => {
+      url
+        ? setHeatmapVideoUrl(url)
+        : setHeatmapVideoUrl(`./media/${location}/${area}/output-seg.mp4`);
+    });
     setIsWatching(false);
+  }, [area, location, timeRangeValue]);
+
+  useEffect(() => {
     setIsImgError(false);
   }, [area, location]);
 
@@ -60,11 +74,14 @@ export default function Heatmap({ location, area }) {
                     autoPlay
                     showCloseButton
                     onClose={handleCloseVideo}
+                    loading={heatmapVideoUrl ? false : true}
                   >
-                    <source
-                      src={`./media/${location}/${area}/output-seg.mp4`}
-                      type="video/mp4"
-                    />
+                    {heatmapVideoUrl && (
+                      <source
+                        src={`./media/${location}/${area}/output-seg.mp4`}
+                        type="video/mp4"
+                      />
+                    )}
                   </Video>
                 )}
               </>

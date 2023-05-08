@@ -43,7 +43,7 @@ export default function FloorMapAnalytics() {
     dayjs(currentDateTime),
     dayjs(updatedCurrentDateTime),
   ]);
-  const [value, setValue] = useState("12:48:30-12:59:02");
+  const [timeRangeValue, setTimeRangeValue] = useState("12:48:30-12:59:02");
 
   const timeOptions = [
     { label: "12:48:30-12:59:02", value: "12:48:30-12:59:02" },
@@ -56,13 +56,13 @@ export default function FloorMapAnalytics() {
 
   const handleChange = (e) => {
     const valReceived = e.target.value;
-    setValue(valReceived);
+    setTimeRangeValue(valReceived);
   };
 
   const handleOnClose = () => {
     // timeOptions.push({ label: customTimeData, value: customTimeData });
     setTime(customTimeData);
-    setValue(customTimeData);
+    setTimeRangeValue(customTimeData);
   };
 
   return (
@@ -106,7 +106,7 @@ export default function FloorMapAnalytics() {
         </div>
         <div className="fma-content-start p-0 d-flex flex-grow-1 col-lg-12">
           <div className="row w-100 m-0">
-            <Heatmap {...{ location, area }} />
+            <Heatmap {...{ location, area, timeRangeValue }} />
             <div className="occupancy-rate d-flex flex-column col-lg-5">
               <div className="occupancy-rate-header d-lg-flex d-md-flex d-sm-flex">
                 <div>
@@ -123,8 +123,8 @@ export default function FloorMapAnalytics() {
                   >
                     {getOptions(frequencyOptions)}
                   </select>
-                  {value !== "Custom" ? (
-                    <select value={value} onChange={handleChange}>
+                  {timeRangeValue !== "Custom" ? (
+                    <select value={timeRangeValue} onChange={handleChange}>
                       {timeOptions.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
