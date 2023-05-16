@@ -46,7 +46,12 @@ export default function FloorMapAnalytics() {
   const [timeRangeValue, setTimeRangeValue] = useState("12:48:30-12:59:02");
 
   const timeOptions = [
-    { label: "12:48:30-12:59:02", value: "12:48:30-12:59:02" },
+    { label: "12:48:30 - 12:57:02", value: "12:48:30-12:57:02" },
+    { label: "12:57:02 - 13:07:02", value: "12:57:02-13:07:02" },
+    { label: "13:07:02 - 13:17:02", value: "13:07:02-13:17:02" },
+    { label: "13:17:02 - 13:27:02", value: "13:17:02-13:27:02" },
+    { label: "13:27:02 - 13:37:02", value: "13:27:02-13:37:02" },
+    { label: "13:37:02 - 13:47:02", value: "13:37:02-13:47:02" },
     { label: "Custom", value: "Custom" },
   ];
 
@@ -54,7 +59,7 @@ export default function FloorMapAnalytics() {
     setFilters((filters) => ({ ...filters, [e.target.name]: e.target.value }));
   };
 
-  const handleChange = (e) => {
+  const handleTimeRangeChange = (e) => {
     const valReceived = e.target.value;
     setTimeRangeValue(valReceived);
   };
@@ -124,7 +129,10 @@ export default function FloorMapAnalytics() {
                     {getOptions(frequencyOptions)}
                   </select>
                   {timeRangeValue !== "Custom" ? (
-                    <select value={timeRangeValue} onChange={handleChange}>
+                    <select
+                      value={timeRangeValue}
+                      onChange={handleTimeRangeChange}
+                    >
                       {timeOptions.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}

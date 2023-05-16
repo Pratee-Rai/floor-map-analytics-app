@@ -11,6 +11,7 @@ export default function Video({
   showCloseButton,
   onClose,
   loading,
+  poster,
   ...props
 }) {
   const [pause, setPause] = useState(false);
@@ -47,6 +48,7 @@ export default function Video({
         ref={videoRef}
         onTimeUpdate={handleTimeUpdate}
         controls={false}
+        poster={poster}
       >
         {children}
       </video>
